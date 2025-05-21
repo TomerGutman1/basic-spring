@@ -10,3 +10,13 @@ services:
       - /postgresdata:/var/lib/postgresql/data
     privileged: true
 
+  pgadmin:
+    image: dpage/pgadmin4:8          # pin a tag
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@example.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "8081:80"                    # host-port 8081 → container 80
+    depends_on:
+      - db
+
