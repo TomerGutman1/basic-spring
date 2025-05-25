@@ -1,0 +1,29 @@
+services:
+  db:
+    image: postgres
+    container_name: basic-spring-db-1
+    environment:
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - 5432:5432
+    volumes:
+      - ./postgresdata:/var/lib/postgresql/data
+    networks:
+      - backend
+
+  pgadmin:
+    image: dpage/pgadmin4:8
+    container_name: basic-spring-pgadmin-1
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@example.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "8081:80"
+    depends_on:
+      - db
+    networks:
+      - backend
+
+networks:
+  backend:
+    driver: bridge
