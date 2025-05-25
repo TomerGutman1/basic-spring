@@ -1,6 +1,7 @@
-package com.handson.basic.repo;
+package com.handson.basic.service;
 
 import com.handson.basic.model.Student;
+import com.handson.basic.repo.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

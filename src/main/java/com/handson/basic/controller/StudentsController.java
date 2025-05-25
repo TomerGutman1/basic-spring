@@ -2,7 +2,7 @@ package com.handson.basic.controller;
 
 import com.handson.basic.DTO.StudentIn;
 import com.handson.basic.model.Student;
-import com.handson.basic.repo.StudentService;
+import com.handson.basic.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
