@@ -1,14 +1,20 @@
 package com.handson.basic.model;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 
 import java.io.Serializable;
 import java.time.Instant;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.ArrayList;
+import java.util.Collection;
 
-    @Entity
+@Entity
     @Table(name="student")
     public class Student implements Serializable {
         private static final long serialVersionUID = 1L;
@@ -82,6 +88,28 @@ import java.time.LocalDate;
 
     private LocalDate birthDate;
 
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    @JsonProperty("birthDate")
+    public LocalDateTime calcBirthDate() {
+        return birthDate.atStartOfDay(ZoneId.systemDefault()).toLocalDateTime();
+    }
+
+    @OneToMany(mappedBy = "student", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+    private Collection<StudentGrade> studentGrades = new ArrayList<>();
+
+    public Collection<StudentGrade> getStudentGrades() {
+        return studentGrades;
+    }
+
+    public void setStudentGrades(Collection<StudentGrade> studentGrades) {
+        this.studentGrades = studentGrades;
+    }
+
+
+
+
+
     @Min(100)
     @Max(800)
     private Integer satScore;
@@ -98,7 +126,13 @@ import java.time.LocalDate;
 
     @PrePersist
     private void onCreate() {
+
         this.createdAt = Instant.now();
+    }
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonProperty("createdAt")
+    public LocalDateTime calcCreatedAt() {
+        return LocalDateTime.ofInstant(createdAt, ZoneId.systemDefault());
     }
 
     public Long getId() {

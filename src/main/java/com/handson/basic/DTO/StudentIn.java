@@ -1,7 +1,8 @@
-package com.handson.basic.model;
+package com.handson.basic.DTO;
 
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.handson.basic.model.Student;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.Size;
@@ -22,6 +23,46 @@ public class StudentIn implements Serializable {
     @Min(100)
     @Max(800)
     private Integer satScore;
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public Double getGraduationScore() {
+        return graduationScore;
+    }
+
+    public void setGraduationScore(Double graduationScore) {
+        this.graduationScore = graduationScore;
+    }
+
+    public Integer getSatScore() {
+        return satScore;
+    }
+
+    public void setSatScore(Integer satScore) {
+        this.satScore = satScore;
+    }
+
+    public LocalDate getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(LocalDate birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public String getFullname() {
+        return fullname;
+    }
+
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
+    }
 
     @Min(30)
     @Max(110)
