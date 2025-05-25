@@ -7,7 +7,7 @@ services:
     ports:
       - 5432:5432
     volumes:
-      - /postgresdata:/var/lib/postgresql/data
+      - ./postgresdata:/var/lib/postgresql/data
     privileged: true
 
   pgadmin:
@@ -19,4 +19,3 @@ services:
       - "8081:80"                    # host-port 8081 → container 80
     depends_on:
       - db
-

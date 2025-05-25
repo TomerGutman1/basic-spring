@@ -1,6 +1,5 @@
 package com.handson.basic.DTO;
 
-
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.handson.basic.model.Student;
 import jakarta.validation.constraints.Max;
@@ -24,28 +23,19 @@ public class StudentIn implements Serializable {
     @Max(800)
     private Integer satScore;
 
-    public String getPhone() {
-        return phone;
+    @Min(30)
+    @Max(110)
+    private Double graduationScore;
+
+    @Size(max = 20)
+    private String phone;
+
+    public String getFullname() {
+        return fullname;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public Double getGraduationScore() {
-        return graduationScore;
-    }
-
-    public void setGraduationScore(Double graduationScore) {
-        this.graduationScore = graduationScore;
-    }
-
-    public Integer getSatScore() {
-        return satScore;
-    }
-
-    public void setSatScore(Integer satScore) {
-        this.satScore = satScore;
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
     }
 
     public LocalDate getBirthDate() {
@@ -56,20 +46,29 @@ public class StudentIn implements Serializable {
         this.birthDate = birthDate;
     }
 
-    public String getFullname() {
-        return fullname;
+    public Integer getSatScore() {
+        return satScore;
     }
 
-    public void setFullname(String fullname) {
-        this.fullname = fullname;
+    public void setSatScore(Integer satScore) {
+        this.satScore = satScore;
     }
 
-    @Min(30)
-    @Max(110)
-    private Double graduationScore;
+    public Double getGraduationScore() {
+        return graduationScore;
+    }
 
-    @Size(max = 20)
-    private String phone;
+    public void setGraduationScore(Double graduationScore) {
+        this.graduationScore = graduationScore;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
 
     public Student toStudent() {
         return aStudent()
@@ -89,3 +88,4 @@ public class StudentIn implements Serializable {
         target.setPhone(phone);
     }
 }
+
