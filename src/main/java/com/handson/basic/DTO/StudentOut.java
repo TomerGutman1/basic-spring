@@ -1,9 +1,12 @@
+
 // --- Update 1: DTO class ---
 package com.handson.basic.DTO;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.handson.basic.model.Student;
 import com.handson.basic.model.StudentGrade;
+import com.handson.basic.service.AWSService;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.SqlResultSetMapping;
@@ -99,5 +102,19 @@ public class StudentOut {
     }
     public void setProfilepicture(String profilepicture) {
         this.profilepicture = profilepicture;
+    }
+
+    public static StudentOut of(Student student, AWSService awsService) {
+        StudentOut res = new StudentOut();
+        res.id = student.getId();
+        res.fullname = student.getFullname();
+        res.birthdate = student.getBirthDate();
+        res.satscore = student.getSatScore();
+        res.graduationscore = student.getGraduationScore();
+        res.phone = student.getPhone();
+        res.profilepicture = awsService.generateLink(student.getProfilePicture());
+        res.avgscore = null;
+
+        return res;
     }
 }

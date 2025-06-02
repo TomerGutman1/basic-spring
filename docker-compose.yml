@@ -7,7 +7,7 @@ services:
     ports:
       - 5432:5432
     volumes:
-      - ./postgresdata:/var/lib/postgresql/data
+      - pgdata:/var/lib/postgresql/data
     networks:
       - backend
 
@@ -27,3 +27,6 @@ services:
 networks:
   backend:
     driver: bridge
+
+volumes:
+  pgdata:
