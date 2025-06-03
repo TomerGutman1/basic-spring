@@ -59,7 +59,7 @@ public class SecurityConfig {
 
 
         // Register our custom JWT filter before the default username/password filter
-        //http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
+        http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
 
 
         // Return the configured SecurityFilterChain
